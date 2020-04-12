@@ -1,0 +1,7 @@
+channels:join
+chat:write
+chat:write.customize
+commands
+im:write
+mpim:write
+reactions:read

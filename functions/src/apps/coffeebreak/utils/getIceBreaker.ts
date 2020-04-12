@@ -1,0 +1,26 @@
+const list = [
+  'What is one article of clothing that someone could wear that would make you walk out on a date with them?',
+  'The zombie apocalypse is coming, who are 3 people you want on your team?',
+  'What is your most used emoji?',
+  'What was the worst style choice you ever made?',
+  'What was the worst haircut you ever had?',
+  'Who was your childhood actor/actress crush?',
+  'If you were a wrestler what would be your entrance theme song?',
+  'Have you ever been told you look like someone famous, who was it?',
+  'If you could bring back any fashion trend what would it be?',
+  'What’s the most embarrassing fashion trend you used to rock?',
+  'What did you name your first car?',
+  'Does your current car have a name? What is it?',
+  'You have your own late night talk show, who do you invite as your first guest?',
+  'If a movie was made of your life what genre would it be, who would play you?',
+  'If you were famous, what would you be famous for?',
+  'You have to sing karaoke, what song do you pick?',
+  'What was your least favorite food as a child? Do you still hate it or do you love it now?',
+  'If you had to eat one meal everyday for the rest of your life what would it be?',
+  'If you were left on a deserted island with either your worst enemy or no one, which would you choose? Why?',
+  'If aliens landed on earth tomorrow and offered to take you home with them, would you go?',
+  '60s, 70s, 80s, 90s: Which decade do you love the most and why?',
+  'What’s your favorite sandwich and why?',
+];
+
+export const getIceBreaker = () => list[Math.round(Math.random() * (list.length - 1))];

@@ -1,0 +1,254 @@
+[
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the world's most expensive spice by weight?",
+    "correct_answer": "Saffron",
+    "incorrect_answers": ["Cinnamon", "Cardamom", "Vanilla"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "When was the Declaration of Independence approved by the Second Continental Congress?",
+    "correct_answer": "July 2, 1776",
+    "incorrect_answers": ["May 4, 1776", "June 4, 1776", "July 4, 1776"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the German word for 'spoon'?",
+    "correct_answer": "Löffel",
+    "incorrect_answers": ["Gabel", "Messer", "Essstäbchen"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the Italian word for 'tomato'?",
+    "correct_answer": "Pomodoro",
+    "incorrect_answers": ["Aglio", "Cipolla", "Peperoncino"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What country saw a world record 315 million voters turn out for elections on May 20, 1991?",
+    "correct_answer": "India",
+    "incorrect_answers": ["United States of America", "Soviet Union", "Poland"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the founder of 'The Lego Group'?",
+    "correct_answer": "Ole Kirk Christiansen",
+    "incorrect_answers": [
+      " Jens Niels Christiansen",
+      "Kirstine Christiansen",
+      " Gerhardt Kirk Christiansen"
+    ]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following carbonated soft drinks were introduced first?",
+    "correct_answer": "Dr. Pepper",
+    "incorrect_answers": ["Coca-Cola", "Sprite", "Mountain Dew"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where does water from Poland Spring water bottles come from?",
+    "correct_answer": "Maine, United States",
+    "incorrect_answers": [
+      "Hesse, Germany",
+      "Masovia, Poland",
+      "Bavaria, Poland"
+    ]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country drives on the left side of the road?",
+    "correct_answer": "Japan",
+    "incorrect_answers": ["Germany", "Russia", "China"]
+  },
+  {
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the highest number of Michelin stars a restaurant can receive?",
+    "correct_answer": "Three",
+    "incorrect_answers": ["Four", "Five", "Six"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "According to their 1974 hit, what were Brownsville Station doing 'In The Boys' Room'?",
+    "correct_answer": "Smokin'",
+    "incorrect_answers": ["Hangin'", "Lovin'", "Peein'"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the founder and leader of industrial rock band, 'Nine Inch Nails'?",
+    "correct_answer": "Trent Reznor",
+    "incorrect_answers": ["Marilyn Manson", "Robin Finck", "Josh Homme"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these is NOT an album released by The Beatles?",
+    "correct_answer": "The Wall",
+    "incorrect_answers": ["Abbey Road", "Magical Mystery Tour", "Revolver"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which popular rock band has a one-armed drummer?",
+    "correct_answer": "Def Leppard",
+    "incorrect_answers": ["The Beatles", "Lynyrd Skynyrd", "Foreigner"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "EDM producer Marshmello performs live wearing clothes and a marshmallow mask of what colour?",
+    "correct_answer": "White",
+    "incorrect_answers": ["Black", "Blue", "Yellow"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "May 16th of every year is known as __________ Day, named after a punk band prominent in the 1990s.",
+    "correct_answer": "Lagwagon",
+    "incorrect_answers": ["Goldfinger", "Less Than Jake", "Lit"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which one of these rappers is NOT a member of the rap group Wu-Tang Clan?",
+    "correct_answer": "Dr.Dre",
+    "incorrect_answers": ["Ol' Dirty Bastard", "GZA", "Method Man"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which song in Drake's 'Views' features Future?",
+    "correct_answer": "Grammys",
+    "incorrect_answers": ["Too Good", "Faithful", "Pop Style"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name of Pink Floyd's first studio album?",
+    "correct_answer": "The Piper at the Gates of Dawn",
+    "incorrect_answers": ["Ummagumma", "More", "Atom Heart Mother"]
+  },
+  {
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "'74–'75 is a 1993 single from the album Ring by what American band?",
+    "correct_answer": "The Connells",
+    "incorrect_answers": ["R.E.M.", "The Ocean Blue", "The Bangles"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Montreal is in which Canadian province?",
+    "correct_answer": "Quebec",
+    "incorrect_answers": ["Ontario", "Nova Scotia", "Alberta"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which city is the capital of Switzerland?",
+    "correct_answer": "Bern",
+    "incorrect_answers": ["Zürich", "Frankfurt", "Wien"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following language families is the most controversial amongst modern linguists?",
+    "correct_answer": "Altaic",
+    "incorrect_answers": ["Sino-Tibetan", "Dravidian", "Indo-European"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "All of the following countries have official claims to territory in Antartica EXCEPT:",
+    "correct_answer": "United States",
+    "incorrect_answers": ["Australia", "Chile", "Norway"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where is Earth's South Magnetic Pole?",
+    "correct_answer": "The North Pole",
+    "incorrect_answers": [
+      "The South Pole",
+      "The Tropic of Cancer",
+      "The Equator"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these countries is located the FURTHEST away from the South China Sea?",
+    "correct_answer": "Bangladesh",
+    "incorrect_answers": ["Malaysia", "Vietnam", "Philippines"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these is NOT an island that is part of the Philippines?",
+    "correct_answer": "Java",
+    "incorrect_answers": ["Luzon", "Mindanao", "Palawan"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The historical city Timbuktu is located in which West African country?",
+    "correct_answer": "Mali",
+    "incorrect_answers": ["Senegal", "Niger", "Burkina Faso"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "How tall is One World Trade Center in New York City?",
+    "correct_answer": "1,776 ft",
+    "incorrect_answers": ["1,888 ft", "1,225 ft", "1,960 ft"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which Canadian province has Charlottetown as its capital?",
+    "correct_answer": "Prince Edward Island",
+    "incorrect_answers": ["Saskachewan", "Northwest Terrirories", "Ontario"]
+  }
+]
