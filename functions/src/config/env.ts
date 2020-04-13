@@ -4,4 +4,4 @@ admin.initializeApp();
 
 export const db = admin.firestore();
 export const firestoreTimestamp = () => admin.firestore.FieldValue.serverTimestamp();
-export const SLACK_TOKEN = functions.config().slack.coffeehoused.token;
+export const SLACK_TOKEN = functions.config().slack.workspace.token;

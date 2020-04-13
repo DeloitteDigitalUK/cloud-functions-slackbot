@@ -23,8 +23,8 @@ export function stringMatchesAnyOf(stringToCheck: string, ...matchers: string[])
 }
 
 export function dropFirstChar(string: string): string {
-  return string.substring(1);
+  return string && string.length > 0 ? string.substring(1) : '';
 }
 export function dropLastChar(string: string): string {
-  return string.substring(0, string.length - 1);
+  return string && string.length > 0 ? string.substring(0, string.length - 1) : '';
 }

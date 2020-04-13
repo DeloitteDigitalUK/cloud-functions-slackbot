@@ -43,7 +43,7 @@ async function initiateChats(res: WebApiGetReactionsResponse) {
   if (res.message.reactions) {
     const raisedHandsReactions = res.message.reactions.find((reaction) => reaction.name === BASE_EMOJI);
     if (raisedHandsReactions) {
-      const pairs = createPairsFromArray([...raisedHandsReactions.users, 'U010YPFQWGN']);
+      const pairs = createPairsFromArray([...raisedHandsReactions.users]);
       const promises = pairs.map((twoUsers) =>
         openConversation({ users: twoUsers.join(',') }).then((openConversationResponse) =>
           postMessageToChat({
