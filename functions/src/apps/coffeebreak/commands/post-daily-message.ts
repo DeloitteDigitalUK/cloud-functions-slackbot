@@ -18,7 +18,7 @@ export async function postDailyMessage() {
       const promises = channels.map(async (channel) => {
         try {
           const res = await postMessageToChat({
-            channel: channel.channelName,
+            channel: channel.channelId,
             text: dailyMessage,
             icon_emoji: BOT_EMOJI,
           });

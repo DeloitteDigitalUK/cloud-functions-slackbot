@@ -7,6 +7,8 @@ import {
 import { CoffeeBreakChannel } from '../repository/repository.types';
 import { postMessageToChat, joinConversation } from '../api/slack';
 import { BOT_EMOJI } from '../../../config/constants';
+import { log } from '../../../util/log';
+import { isPrivateChannel } from '../../../util/slack.utils';
 
 const successAddMessage = (channelId: string, channelName: string) =>
   `Success! Coffeebreak will setup the daily coffee matcher in <#${channelId}|${channelName}> every day`;
@@ -18,6 +20,7 @@ export async function addChannel(body: SlackCommandRequestBody) {
   if (await isChannelAlreadyIntegrated(body.channel_id, body.team_id)) {
     return `Channel <#${body.channel_id}|${body.channel_name}> is already setup with CoffeeBreak`;
   }
+  log(`Adding channel ${body.channel_id} - ${body.channel_name}`);
   const channelDocument: CoffeeBreakChannel = {
     teamDomain: body.team_domain,
     teamId: body.team_id,
@@ -26,12 +29,14 @@ export async function addChannel(body: SlackCommandRequestBody) {
     createdByUserName: body.user_name,
     createdById: body.user_id,
   };
-  await joinConversation({
-    channel: body.channel_id,
-  });
+  if (!isPrivateChannel(body.channel_name)) {
+    await joinConversation({
+      channel: body.channel_id,
+    });
+  }
   await addChannelIntegration(channelDocument);
   await postMessageToChat({
-    channel: body.channel_name,
+    channel: body.channel_id,
     text: `${channelDocument.createdByUserName} has added CoffeeBreak to this channel.\nEveryday, through Coffeebreak, you can opt in to being randomly paired with someone for a coffeee and a chat.\nLook out for my morning message!`,
     icon_emoji: BOT_EMOJI,
   });
@@ -42,13 +47,14 @@ export async function removeChannel(body: SlackCommandRequestBody) {
   if (!(await isChannelAlreadyIntegrated(body.channel_id, body.team_id))) {
     return `Channel <#${body.channel_id}|${body.channel_name}> is not setup yet with CoffeeBreak`;
   }
+  log(`Removing channel ${body.channel_id} - ${body.channel_name}`);
   const channelDocument = {
     teamId: body.team_id,
     channelId: body.channel_id,
   };
   await removeChannelIntegration(channelDocument);
   await postMessageToChat({
-    channel: body.channel_name,
+    channel: body.channel_id,
     text: `${body.user_name} has turned off CoffeeBreak. The daily matching will now not occur.`,
     icon_emoji: BOT_EMOJI,
   });
