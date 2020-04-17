@@ -16,6 +16,18 @@ const successAddMessage = (channelId: string, channelName: string) =>
 const successRemoveMessage = (channelId: string, channelName: string) =>
   `Success! Coffeebreak will no longer start the daily coffee matcher in <#${channelId}|${channelName}>`;
 
+async function joinConversationHackToWorkAroundPublicPrivateChannelIssue(channelId: string, channelName: string) {
+  if (isPrivateChannel(channelName)) return;
+  try {
+    await joinConversation({
+      channel: channelId,
+    });
+  } catch (err) {
+    if (err.message.includes('method_not_supported_for_channel_type')) return;
+    else throw err;
+  }
+}
+
 export async function addChannel(body: SlackCommandRequestBody) {
   if (await isChannelAlreadyIntegrated(body.channel_id, body.team_id)) {
     return `Channel <#${body.channel_id}|${body.channel_name}> is already setup with CoffeeBreak`;
@@ -29,14 +41,10 @@ export async function addChannel(body: SlackCommandRequestBody) {
     createdByUserName: body.user_name,
     createdById: body.user_id,
   };
-  if (!isPrivateChannel(body.channel_name)) {
-    await joinConversation({
-      channel: body.channel_id,
-    });
-  }
+  await joinConversationHackToWorkAroundPublicPrivateChannelIssue(body.channel_id, body.channel_name);
   await addChannelIntegration(channelDocument);
   await postMessageToChat({
-    channel: body.channel_id,
+    channel: body.channel_name,
     text: `${channelDocument.createdByUserName} has added CoffeeBreak to this channel.\nEveryday, through Coffeebreak, you can opt in to being randomly paired with someone for a coffeee and a chat.\nLook out for my morning message!`,
     icon_emoji: BOT_EMOJI,
   });
