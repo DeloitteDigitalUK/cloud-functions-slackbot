@@ -22,7 +22,7 @@ export async function postDailyMessage() {
             text: dailyMessage,
             icon_emoji: BOT_EMOJI,
           });
-          await updateChannelWithTimestamp(res.channel, res.message.ts);
+          await updateChannelWithTimestamp(channel.channelId, res.message.ts);
         } catch (err) {
           error(err);
         }

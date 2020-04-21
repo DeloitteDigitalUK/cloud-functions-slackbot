@@ -7,7 +7,7 @@ export function createPairsFromArray<T>(array: T[]): T[][] {
     pairedArrayIndex += 1;
     arrayIndex += 2;
   }
-  return pairedArray;
+  return arrayIndex === array.length - 1 ? [...pairedArray, [array[arrayIndex]]] : pairedArray; // Add the last user if they have no pair
 }
 
 export function stringMatchesAnyOf(stringToCheck: string, ...matchers: string[]) {

@@ -10,11 +10,39 @@ import { pre } from 'fast-check';
  */
 
 describe('createPairsFromArray should', () => {
-  test('length of paired array is always less than or equal to half of original array', () => {
+  test('length of paired array is always less than or equal to half of original array + 1', () => {
     fc.assert(
       fc.property(fc.set(fc.anything()), (data) => {
         const paired = createPairsFromArray(data);
-        expect(paired.length).toBeLessThanOrEqual(data.length / 2);
+        expect(paired.length).toBeLessThanOrEqual(data.length / 2 + 1);
+      }),
+    );
+  });
+
+  test('last pair is a single value if the array length is odd or two values if even', () => {
+    fc.assert(
+      fc.property(fc.set(fc.anything()), (data) => {
+        const paired = createPairsFromArray(data);
+        if (data.length === 0) {
+          expect(paired).toHaveLength(0);
+        } else if (data.length % 2 === 0) {
+          expect(paired[paired.length - 1]).toHaveLength(2);
+        } else {
+          expect(paired[paired.length - 1]).toHaveLength(1);
+        }
+      }),
+    );
+  });
+
+  test('contain every value passed into the function', () => {
+    fc.assert(
+      fc.property(fc.set(fc.anything()), (data) => {
+        fc.pre(!data.includes(Number.NaN)); // Number.NaN is not equal to itself :/
+        const paired = createPairsFromArray(data);
+        const flattenedPair = paired.flat();
+        for (let ind = 0; ind < data.length; ++ind) {
+          expect(flattenedPair).toContain(data[ind]);
+        }
       }),
     );
   });

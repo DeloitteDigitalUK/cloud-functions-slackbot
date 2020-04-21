@@ -10,6 +10,10 @@ const startConversationMessage = () => `:wave: Hello!
 \n\nYou have been paired for an informal chat or conversation :speech_balloon:. Feel free to run this however you both feel most comfortable!
 \n\nThe icebreaker :icecream: today is: ${getIceBreaker()}`;
 
+const missedOutMessage = () => `:wave: Hello!
+\n\nI'm really sorry but you were a bit too late today and just missed out on a match.
+\n\nThe earlier you opt-in to the matching the better your chances of getting a match - so :crossed_fingers: for next time!`;
+
 export async function createPairConversations() {
   try {
     const channels = await getAllChannelIntegrations();
@@ -20,9 +24,10 @@ export async function createPairConversations() {
           const res = await getReactionsForMessage({
             channel: channel.channelId,
             timestamp: channel.latestPostTimestamp,
+            full: true,
           });
-          const { pairs } = await initiateChats(res);
-          // Save?
+          const pairs = createMatchingPairs(res);
+          await initiateChats(pairs);
         } catch (err) {
           error(err);
         }
@@ -39,30 +44,35 @@ export async function createPairConversations() {
   }
 }
 
-async function initiateChats(res: WebApiGetReactionsResponse) {
+function createMatchingPairs(res: WebApiGetReactionsResponse) {
   if (res.message.reactions) {
-    const raisedHandsReactions = res.message.reactions.find((reaction) => reaction.name === BASE_EMOJI);
-    if (raisedHandsReactions) {
-      const pairs = createPairsFromArray([...raisedHandsReactions.users]);
-      const promises = pairs.map((twoUsers) =>
-        openConversation({ users: twoUsers.join(',') }).then((openConversationResponse) =>
-          postMessageToChat({
-            channel: openConversationResponse.channel.id,
-            text: startConversationMessage(),
-            icon_emoji: BOT_EMOJI,
-          }),
-        ),
-      );
-      Promise.all(promises)
-        .then(() => {
-          log('Success');
-        })
-        .catch((err) => console.error(err));
-      return { pairs };
-    } else {
-      return { pairs: [] };
+    const usersWantingAChat = res.message.reactions
+      .filter((reaction) => reaction.name.includes(BASE_EMOJI))
+      .flatMap((reaction) => reaction.users);
+
+    const uniqueUsersWantingAChat = [...new Set(usersWantingAChat)];
+
+    if (uniqueUsersWantingAChat.length > 0) {
+      return createPairsFromArray(uniqueUsersWantingAChat);
     }
-  } else {
-    return { pairs: [] };
   }
+  return [];
+}
+
+async function initiateChats(pairs: string[][]) {
+  const promises = pairs.map((pair) => {
+    const message = pair.length === 2 ? startConversationMessage() : missedOutMessage();
+    return openConversation({ users: pair.join(',') }).then((openConversationResponse) =>
+      postMessageToChat({
+        channel: openConversationResponse.channel.id,
+        text: message,
+        icon_emoji: BOT_EMOJI,
+      }),
+    );
+  });
+  Promise.all(promises)
+    .then(() => {
+      log('Success');
+    })
+    .catch((err) => console.error(err));
 }

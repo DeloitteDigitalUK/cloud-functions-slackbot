@@ -56,6 +56,10 @@
     },
     "testMatch": [
       "**/specs/**/*.+(ts|tsx|js)"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/",
+      "<rootDir>/node_modules/"
     ]
   },
   "husky": {
