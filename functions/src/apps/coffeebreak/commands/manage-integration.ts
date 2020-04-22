@@ -6,15 +6,24 @@ import {
 } from '../repository/coffee-repository';
 import { CoffeeBreakChannel } from '../repository/repository.types';
 import { postMessageToChat, joinConversation } from '../api/slack';
-import { BOT_EMOJI } from '../../../config/constants';
+import { BOT_EMOJI, BOT_NAME } from '../../../config/constants';
 import { log } from '../../../util/log';
 import { isPrivateChannel } from '../../../util/slack.utils';
 
 const successAddMessage = (channelId: string, channelName: string) =>
-  `Success! Coffeebreak will setup the daily coffee matcher in <#${channelId}|${channelName}> every day`;
+  `Success! ${BOT_NAME} will setup the daily coffee matcher in <#${channelId}|${channelName}> every day`;
 
 const successRemoveMessage = (channelId: string, channelName: string) =>
-  `Success! Coffeebreak will no longer start the daily coffee matcher in <#${channelId}|${channelName}>`;
+  `Success! ${BOT_NAME} will no longer start the daily coffee matcher in <#${channelId}|${channelName}>`;
+
+const coffeeBreakAddedMessage = (username: string) =>
+  `${username} has added ${BOT_NAME} to this channel.
+  \nEvery morning, with ${BOT_NAME}, you can opt in to being randomly paired with someone for an informal coffee :coffee: and a chat.
+  \nWhen matched, ${BOT_NAME} will start a new conversation for you pair and provide an optional icebreaker to start. You may then run your coffee break however you feel most comfortable.
+  \nKeep an eye out for my morning message to opt in!`;
+
+const coffeeBreakRemovedMessage = (username: string) =>
+  `${username} has turned off ${BOT_NAME} in this channel. The daily matching will no longer occur`;
 
 async function joinConversationHackToWorkAroundPublicPrivateChannelIssue(channelId: string, channelName: string) {
   if (isPrivateChannel(channelName)) return;
@@ -30,7 +39,7 @@ async function joinConversationHackToWorkAroundPublicPrivateChannelIssue(channel
 
 export async function addChannel(body: SlackCommandRequestBody) {
   if (await isChannelAlreadyIntegrated(body.channel_id, body.team_id)) {
-    return `Channel <#${body.channel_id}|${body.channel_name}> is already setup with CoffeeBreak`;
+    return `Channel <#${body.channel_id}|${body.channel_name}> is already setup with ${BOT_NAME}`;
   }
   log(`Adding channel ${body.channel_id} - ${body.channel_name}`);
   const channelDocument: CoffeeBreakChannel = {
@@ -45,7 +54,7 @@ export async function addChannel(body: SlackCommandRequestBody) {
   await addChannelIntegration(channelDocument);
   await postMessageToChat({
     channel: body.channel_name,
-    text: `${channelDocument.createdByUserName} has added CoffeeBreak to this channel.\nEveryday, through Coffeebreak, you can opt in to being randomly paired with someone for a coffeee and a chat.\nLook out for my morning message!`,
+    text: coffeeBreakAddedMessage(channelDocument.createdByUserName),
     icon_emoji: BOT_EMOJI,
   });
   return successAddMessage(channelDocument.channelId, channelDocument.channelName);
@@ -53,7 +62,7 @@ export async function addChannel(body: SlackCommandRequestBody) {
 
 export async function removeChannel(body: SlackCommandRequestBody) {
   if (!(await isChannelAlreadyIntegrated(body.channel_id, body.team_id))) {
-    return `Channel <#${body.channel_id}|${body.channel_name}> is not setup yet with CoffeeBreak`;
+    return `Channel <#${body.channel_id}|${body.channel_name}> is not setup yet with ${BOT_NAME}`;
   }
   log(`Removing channel ${body.channel_id} - ${body.channel_name}`);
   const channelDocument = {
@@ -63,7 +72,7 @@ export async function removeChannel(body: SlackCommandRequestBody) {
   await removeChannelIntegration(channelDocument);
   await postMessageToChat({
     channel: body.channel_id,
-    text: `${body.user_name} has turned off CoffeeBreak. The daily matching will now not occur.`,
+    text: coffeeBreakRemovedMessage(body.user_name),
     icon_emoji: BOT_EMOJI,
   });
   return successRemoveMessage(body.channel_id, body.channel_name);

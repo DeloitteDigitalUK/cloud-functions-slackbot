@@ -14,6 +14,8 @@ const missedOutMessage = () => `:wave: Hello!
 \n\nI'm really sorry but you were a bit too late today and just missed out on a match.
 \n\nThe earlier you opt-in to the matching the better your chances of getting a match - so :crossed_fingers: for next time!`;
 
+const dailyMatchCompleted = () => `The daily matching has completed for today. Enjoy your coffee breaks! :coffee:`;
+
 export async function createPairConversations() {
   try {
     const channels = await getAllChannelIntegrations();
@@ -28,6 +30,11 @@ export async function createPairConversations() {
           });
           const pairs = createMatchingPairs(res);
           await initiateChats(pairs);
+          await postMessageToChat({
+            channel: channel.channelId,
+            text: dailyMatchCompleted(),
+            icon_emoji: BOT_EMOJI,
+          });
         } catch (err) {
           error(err);
         }

@@ -10,11 +10,17 @@ import { pre } from 'fast-check';
  */
 
 describe('createPairsFromArray should', () => {
-  test('length of paired array is always less than or equal to half of original array + 1', () => {
+  test('length of paired array is half if array is of even length or half + 1 if of odd length', () => {
     fc.assert(
       fc.property(fc.set(fc.anything()), (data) => {
         const paired = createPairsFromArray(data);
-        expect(paired.length).toBeLessThanOrEqual(data.length / 2 + 1);
+        if (data.length === 0) {
+          expect(paired).toHaveLength(0);
+        } else if (data.length % 2 === 0) {
+          expect(paired).toHaveLength(data.length / 2);
+        } else {
+          expect(paired).toHaveLength((data.length - 1) / 2 + 1);
+        }
       }),
     );
   });
