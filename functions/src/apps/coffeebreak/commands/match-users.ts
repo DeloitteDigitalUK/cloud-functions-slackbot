@@ -55,7 +55,8 @@ function createMatchingPairs(res: WebApiGetReactionsResponse) {
   if (res.message.reactions) {
     const usersWantingAChat = res.message.reactions
       .filter((reaction) => reaction.name.includes(BASE_EMOJI))
-      .flatMap((reaction) => reaction.users);
+      .map((reaction) => reaction.users)
+      .reduce((prev, next) => [...prev, ...next], []);
 
     const uniqueUsersWantingAChat = [...new Set(usersWantingAChat)];
 

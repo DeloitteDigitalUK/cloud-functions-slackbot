@@ -45,7 +45,7 @@ describe('createPairsFromArray should', () => {
       fc.property(fc.set(fc.anything()), (data) => {
         fc.pre(!data.includes(Number.NaN)); // Number.NaN is not equal to itself :/
         const paired = createPairsFromArray(data);
-        const flattenedPair = paired.flat();
+        const flattenedPair = paired.reduce((p, n) => [...p, ...n], []);
         for (let ind = 0; ind < data.length; ++ind) {
           expect(flattenedPair).toContain(data[ind]);
         }
